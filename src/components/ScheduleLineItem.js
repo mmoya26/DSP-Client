@@ -11,8 +11,7 @@ export default function ScheduleLineItem(props) {
       className="flex border-solid border border-grey-200 rounded-[12px] items-center mb-3"
       style={{
         backgroundColor: `${n % 2 === 0 ? "#f8fafc" : "#f1f5f9"}`,
-      }}
-      key={id}>
+      }}>
       <div className="text-gray-700 basis-1/4 p-4 text-center">
         {`${firstName} ${lastName}`}
       </div>

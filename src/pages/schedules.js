@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useId } from "react";
 import ScheduleLineItem from "@/components/ScheduleLineItem";
 import {
   EditScheduleContext,
@@ -9,6 +9,20 @@ export default function Schedules() {
   const { rows } = useContext(EditScheduleContext);
   const removeEmployee = useContext(EditScheduleUpdateContext);
 
+  const daysOfTheWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const handleCheckBoxChange = (e) => {
+    console.log("CLICKED", e);
+  };
+
   return (
     <div className="mx-auto mt-5 max-w-screen-2xl">
       <h1 className="text-slate-600 font-bold text-3xl mb-12">
@@ -17,8 +31,30 @@ export default function Schedules() {
         </p>
         May 5/1 - 5/7
       </h1>
+
+      {/* Filters */}
+      <div className="flex gap-6 mb-5">
+        {daysOfTheWeek.map((d) => {
+          const id = useId();
+
+          return (
+            <div className="flex gap-2" key={d}>
+              <input
+                id={id}
+                type="checkbox"
+                className="checkbox"
+                onChange={handleCheckBoxChange}
+              />
+              <label htmlFor={id} className="text-slate-600 text-base">
+                {d}
+              </label>
+            </div>
+          );
+        })}
+      </div>
+
       {/* Search Bar */}
-      <div className="relative mt-5">
+      <div className="relative mb-5">
         <div className="rounded-md shadow-sm">
           <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <svg
@@ -88,7 +124,12 @@ export default function Schedules() {
         {/* Line Item */}
         {rows.map((r, n) => {
           return (
-            <ScheduleLineItem n={n} row={r} removeEmployee={removeEmployee} />
+            <ScheduleLineItem
+              n={n}
+              row={r}
+              removeEmployee={removeEmployee}
+              key={r.id}
+            />
           );
         })}
       </div>
