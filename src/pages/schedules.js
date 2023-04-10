@@ -1,5 +1,12 @@
 import React, { useState, useContext, useId } from "react";
 import ScheduleLineItem from "@/components/ScheduleLineItem";
+import ScheduleDayFilter from "@/components/ScheduleDayFilter";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   EditScheduleContext,
   EditScheduleUpdateContext,
@@ -19,8 +26,9 @@ export default function Schedules() {
     "Saturday",
   ];
 
-  const handleCheckBoxChange = (e) => {
-    console.log("CLICKED", e);
+  const handleCheckBoxChange = (e, day) => {
+    console.log("Event", e);
+    console.log("Day", day);
   };
 
   return (
@@ -38,17 +46,12 @@ export default function Schedules() {
           const id = useId();
 
           return (
-            <div className="flex gap-2" key={d}>
-              <input
-                id={id}
-                type="checkbox"
-                className="checkbox"
-                onChange={handleCheckBoxChange}
-              />
-              <label htmlFor={id} className="text-slate-600 text-base">
-                {d}
-              </label>
-            </div>
+            <ScheduleDayFilter
+              key={d}
+              id={id}
+              day={d}
+              handleChange={handleCheckBoxChange}
+            />
           );
         })}
       </div>
@@ -132,6 +135,29 @@ export default function Schedules() {
             />
           );
         })}
+      </div>
+
+      {/* Pagination */}
+      <div className="mt-6 mb-10 flex justify-end">
+        <div className="flex items-center gap-5">
+          <span className="text-slate-500 text-base">Page 1 of 10</span>
+          <div className="flex gap-5">
+            {/* Reduce opacity of left or right arrow depending if there is any available pages on either
+            direction */}
+            <button className="w-8 h-8 rounded-[3px] border border-gray-200 shadow-sm">
+              <FontAwesomeIcon
+                icon={faChevronLeft}
+                className="text-slate-500 cursor-pointer text-base"
+              />
+            </button>
+            <button className="w-8 h-8 rounded-[3px] border border-gray-200 shadow-sm">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                className="text-slate-500 cursor-pointer text-base"
+              />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
