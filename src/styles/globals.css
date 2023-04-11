@@ -11,7 +11,8 @@ body {
   position: relative;
   width: 25px;
   height: 25px;
-  background: #475569;
+  /* background: #475569; */
+  border: 1px solid #94a3b8;
   border-radius: 3px;
 }
 
@@ -28,6 +29,11 @@ body {
   border-top: 0;
   border-left: 0;
   transform: rotate(30deg);
+}
+
+.checkbox:checked {
+  background-color: #475569;
+  border: 1px solid transparent;
 }
 
 .checkbox:checked:after {
