@@ -141,7 +141,7 @@ export default function Schedules() {
       <div className="mt-6 mb-10 flex justify-end">
         <div className="flex items-center gap-5">
           <span className="text-slate-500 text-base">Page 1 of 10</span>
-          <div className="flex gap-5">
+          <div className="flex gap-3">
             {/* Reduce opacity of left or right arrow depending if there is any available pages on either
             direction */}
             <button className="w-8 h-8 rounded-[3px] border border-gray-200 shadow-sm">
