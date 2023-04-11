@@ -14,7 +14,9 @@ import {
 
 export default function Schedules() {
   const { rows } = useContext(EditScheduleContext);
-  const removeEmployee = useContext(EditScheduleUpdateContext);
+  const { removeEmployee, handleFilterChange } = useContext(
+    EditScheduleUpdateContext
+  );
 
   const daysOfTheWeek = [
     "Sunday",
@@ -50,7 +52,7 @@ export default function Schedules() {
               key={d}
               id={id}
               day={d}
-              handleChange={handleCheckBoxChange}
+              handleChange={handleFilterChange}
             />
           );
         })}
@@ -99,15 +101,15 @@ export default function Schedules() {
             (5/2)
           </div>
           <div className="text-slate-600 font-bold text-center w-[93px]">
-            Wednesday <br />
+            Tuesday <br />
             (5/3)
           </div>
           <div className="text-slate-600 font-bold text-center w-[93px]">
-            Thursday <br />
+            Wednesday <br />
             (5/4)
           </div>
           <div className="text-slate-600 font-bold text-center w-[93px]">
-            Sunday <br />
+            Thursday <br />
             (5/5)
           </div>
           <div className="text-slate-600 font-bold text-center w-[93px]">
