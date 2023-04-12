@@ -7,6 +7,7 @@ import uuid from "react-uuid";
 import {
   faChevronLeft,
   faChevronRight,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   EditScheduleContext,
@@ -122,7 +123,14 @@ export default function Schedules() {
       </div>
 
       {/* Pagination */}
-      <div className="mt-6 mb-10 flex justify-end">
+      <div className="mt-6 mb-10 flex items-center justify-between text-base">
+        <button className="bg-sky-700 text-white px-5 py-2 rounded-[3px]">
+          <FontAwesomeIcon
+            icon={faPlus}
+            className="text-white text-base mr-3"
+          />
+          Add Employee
+        </button>
         <div className="flex items-center gap-5">
           <span className="text-slate-500 text-base">Page 1 of 10</span>
           <div className="flex gap-3">
