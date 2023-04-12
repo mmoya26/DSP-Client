@@ -31,7 +31,7 @@ export default function Schedules() {
 
   return (
     <div className="mx-auto mt-5 max-w-screen-2xl">
-      <h1 className="text-slate-600 font-bold text-3xl mb-12">
+      <h1 className="text-slate-600 font-bold text-2xl mb-12">
         <p className="text-slate-500 font-normal text-base">
           Schedule for week of:
         </p>
