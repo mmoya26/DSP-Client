@@ -12,7 +12,7 @@ export default function ScheduleLineItem(props) {
       style={{
         backgroundColor: `${n % 2 === 0 ? "#f8fafc" : "#f1f5f9"}`,
       }}>
-      <div className="text-gray-700 basis-1/4 p-4 text-center">
+      <div className="text-slate-600 basis-1/4 p-4 text-center">
         {`${firstName} ${lastName}`}
       </div>
       <div className="flex gap-[60px] text-center">

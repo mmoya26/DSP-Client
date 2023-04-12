@@ -2,6 +2,7 @@ import React, { useState, useContext, useId } from "react";
 import ScheduleLineItem from "@/components/ScheduleLineItem";
 import ScheduleDayFilter from "@/components/ScheduleDayFilter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import uuid from "react-uuid";
 
 import {
   faChevronLeft,
@@ -13,7 +14,7 @@ import {
 } from "@/contexts/EditScheduleContext";
 
 export default function Schedules() {
-  const { rows } = useContext(EditScheduleContext);
+  const { rows, activeFilters } = useContext(EditScheduleContext);
   const { removeEmployee, handleFilterChange } = useContext(
     EditScheduleUpdateContext
   );
@@ -27,11 +28,6 @@ export default function Schedules() {
     "Friday",
     "Saturday",
   ];
-
-  const handleCheckBoxChange = (e, day) => {
-    console.log("Event", e);
-    console.log("Day", day);
-  };
 
   return (
     <div className="mx-auto mt-5 max-w-screen-2xl">
@@ -88,38 +84,24 @@ export default function Schedules() {
 
       {/* Days of the week */}
       <div className="flex mt-6 items-center">
-        <div className="text-slate-600 font-bold basis-1/4 px-4 text-center">
+        <div className="text-slate-600 basis-1/4 px-4 text-center">
           Employee Name
         </div>
         <div className="flex gap-[60px]">
-          <div className="text-slate-600 font-bold text-center w-[93px]">
-            Sunday <br />
-            (5/1)
-          </div>
-          <div className="text-slate-600 font-bold text-center w-[93px]">
-            Monday <br />
-            (5/2)
-          </div>
-          <div className="text-slate-600 font-bold text-center w-[93px]">
-            Tuesday <br />
-            (5/3)
-          </div>
-          <div className="text-slate-600 font-bold text-center w-[93px]">
-            Wednesday <br />
-            (5/4)
-          </div>
-          <div className="text-slate-600 font-bold text-center w-[93px]">
-            Thursday <br />
-            (5/5)
-          </div>
-          <div className="text-slate-600 font-bold text-center w-[93px]">
-            Friday <br />
-            (5/6)
-          </div>
-          <div className="text-slate-600 font-bold text-center w-[93px]">
-            Saturday <br />
-            (5/7)
-          </div>
+          {daysOfTheWeek.map((d, i) => {
+            const isActive = activeFilters.includes(d.toLowerCase());
+
+            return (
+              <div
+                className={`text-slate-600 text-center w-[93px] ${
+                  isActive ? "font-bold" : ""
+                }`}
+                key={uuid()}>
+                {d} <br />
+                (5/{i + 1})
+              </div>
+            );
+          })}
         </div>
         <div className="w-[46px]"></div>
       </div>

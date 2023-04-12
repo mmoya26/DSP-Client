@@ -163,7 +163,7 @@ export function EditScheduleContextProvider({ children }) {
   }
 
   return (
-    <EditScheduleContext.Provider value={{ rows: filterRows() }}>
+    <EditScheduleContext.Provider value={{ rows: filterRows(), activeFilters }}>
       <EditScheduleUpdateContext.Provider
         value={{ removeEmployee, handleFilterChange }}>
         {children}
