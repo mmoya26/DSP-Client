@@ -1,6 +1,5 @@
 import React, { createContext, useReducer, useState } from "react";
 import scheduleReducer from "@/reducers/EditScheduleReducer";
-import snackBarReducer from "@/reducers/EditScheduleSnackBarReducer";
 import uuid from "react-uuid";
 
 export const EditScheduleContext = createContext();
@@ -122,21 +121,23 @@ export function EditScheduleContextProvider({ children }) {
     },
   ]);
 
-  const [sbOpen, setSbOpen] = useState(false);
-
-  const [message, snackDispatch] = useReducer(
-    snackBarReducer,
-    "Task Successful"
-  );
+  const [snackBarState, setSnackBarState] = useState({
+    message: "Task Sucessful",
+    open: false,
+  });
 
   const [activeFilters, setActiveFilters] = useState([]);
 
-  const handleClose = (event, reason) => {
+  const handleSnackBarClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
 
-    setSbOpen(false);
+    setSnackBarState({ ...snackBarState, open: false });
+  };
+
+  const handleSnackBar = (message) => {
+    setSnackBarState({ message, open: true });
   };
 
   function handleFilterChange(e, day) {
@@ -171,18 +172,15 @@ export function EditScheduleContextProvider({ children }) {
     }
   }
 
-  console.log(message);
-
   return (
     <EditScheduleContext.Provider
-      value={{ rows: filterRows(), activeFilters, message, sbOpen }}>
+      value={{ rows: filterRows(), activeFilters, snackBarState }}>
       <EditScheduleUpdateContext.Provider
         value={{
+          handleSnackBarClose,
+          handleSnackBar,
           handleFilterChange,
-          handleClose,
-          setSbOpen,
           dispatch,
-          snackDispatch,
         }}>
         {children}
       </EditScheduleUpdateContext.Provider>

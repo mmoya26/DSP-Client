@@ -19,15 +19,10 @@ import {
 } from "@/contexts/EditScheduleContext";
 
 export default function Schedules() {
-  const { rows, activeFilters, sbOpen, message } =
+  const { rows, activeFilters, snackBarState } =
     useContext(EditScheduleContext);
-  const {
-    handleClose,
-    handleFilterChange,
-    setSbOpen,
-    dispatch,
-    snackDispatch,
-  } = useContext(EditScheduleUpdateContext);
+  const { handleSnackBarClose, handleFilterChange, handleSnackBar, dispatch } =
+    useContext(EditScheduleUpdateContext);
 
   const action = (
     <React.Fragment>
@@ -38,7 +33,7 @@ export default function Schedules() {
         size="small"
         aria-label="close"
         color="inherit"
-        onClick={handleClose}>
+        onClick={handleSnackBarClose}>
         <CloseIcon fontSize="small" />
       </IconButton>
     </React.Fragment>
@@ -57,10 +52,10 @@ export default function Schedules() {
   return (
     <div className="mx-auto mt-5 max-w-screen-2xl">
       <Snackbar
-        open={sbOpen}
+        open={snackBarState.open}
         autoHideDuration={6000}
-        onClose={handleClose}
-        message={message}
+        onClose={handleSnackBarClose}
+        message={snackBarState.message}
         action={action}
       />
       <h1 className="text-slate-600 font-bold text-2xl mb-12">
@@ -148,8 +143,7 @@ export default function Schedules() {
               row={r}
               removeEmployee={() => {
                 dispatch({ type: "REMOVE", id: r.id });
-                snackDispatch({ type: "REMOVE" });
-                setSbOpen(true);
+                handleSnackBar("Employee sucessfuly removed");
               }}
               key={r.id}
             />
