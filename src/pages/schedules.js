@@ -2,6 +2,10 @@ import React, { useState, useContext, useId } from "react";
 import ScheduleLineItem from "@/components/ScheduleLineItem";
 import ScheduleDayFilter from "@/components/ScheduleDayFilter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import uuid from "react-uuid";
 
 import {
@@ -15,9 +19,29 @@ import {
 } from "@/contexts/EditScheduleContext";
 
 export default function Schedules() {
-  const { rows, activeFilters } = useContext(EditScheduleContext);
-  const { handleFilterChange, dispatch } = useContext(
-    EditScheduleUpdateContext
+  const { rows, activeFilters, sbOpen, message } =
+    useContext(EditScheduleContext);
+  const {
+    handleClose,
+    handleFilterChange,
+    setSbOpen,
+    dispatch,
+    snackDispatch,
+  } = useContext(EditScheduleUpdateContext);
+
+  const action = (
+    <React.Fragment>
+      {/* <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button> */}
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}>
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
   );
 
   const daysOfTheWeek = [
@@ -32,6 +56,13 @@ export default function Schedules() {
 
   return (
     <div className="mx-auto mt-5 max-w-screen-2xl">
+      <Snackbar
+        open={sbOpen}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={message}
+        action={action}
+      />
       <h1 className="text-slate-600 font-bold text-2xl mb-12">
         <p className="text-slate-500 font-normal text-base">
           Schedule for week of:
@@ -115,7 +146,11 @@ export default function Schedules() {
             <ScheduleLineItem
               n={n}
               row={r}
-              removeEmployee={() => dispatch({ type: "REMOVE", id: r.id })}
+              removeEmployee={() => {
+                dispatch({ type: "REMOVE", id: r.id });
+                snackDispatch({ type: "REMOVE" });
+                setSbOpen(true);
+              }}
               key={r.id}
             />
           );

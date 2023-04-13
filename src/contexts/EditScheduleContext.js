@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useState } from "react";
 import scheduleReducer from "@/reducers/EditScheduleReducer";
+import snackBarReducer from "@/reducers/EditScheduleSnackBarReducer";
 import uuid from "react-uuid";
 
 export const EditScheduleContext = createContext();
@@ -121,7 +122,22 @@ export function EditScheduleContextProvider({ children }) {
     },
   ]);
 
+  const [sbOpen, setSbOpen] = useState(false);
+
+  const [message, snackDispatch] = useReducer(
+    snackBarReducer,
+    "Task Successful"
+  );
+
   const [activeFilters, setActiveFilters] = useState([]);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSbOpen(false);
+  };
 
   function handleFilterChange(e, day) {
     // check if the passed filtered is alredy in the activeFilters array
@@ -155,10 +171,19 @@ export function EditScheduleContextProvider({ children }) {
     }
   }
 
+  console.log(message);
+
   return (
-    <EditScheduleContext.Provider value={{ rows: filterRows(), activeFilters }}>
+    <EditScheduleContext.Provider
+      value={{ rows: filterRows(), activeFilters, message, sbOpen }}>
       <EditScheduleUpdateContext.Provider
-        value={{ handleFilterChange, dispatch }}>
+        value={{
+          handleFilterChange,
+          handleClose,
+          setSbOpen,
+          dispatch,
+          snackDispatch,
+        }}>
         {children}
       </EditScheduleUpdateContext.Provider>
     </EditScheduleContext.Provider>
