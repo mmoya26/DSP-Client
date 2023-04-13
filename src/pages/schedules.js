@@ -16,7 +16,7 @@ import {
 
 export default function Schedules() {
   const { rows, activeFilters } = useContext(EditScheduleContext);
-  const { removeEmployee, handleFilterChange } = useContext(
+  const { handleFilterChange, dispatch } = useContext(
     EditScheduleUpdateContext
   );
 
@@ -115,7 +115,7 @@ export default function Schedules() {
             <ScheduleLineItem
               n={n}
               row={r}
-              removeEmployee={removeEmployee}
+              removeEmployee={() => dispatch({ type: "REMOVE", id: r.id })}
               key={r.id}
             />
           );

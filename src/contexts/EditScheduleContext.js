@@ -1,11 +1,12 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer, useState } from "react";
+import scheduleReducer from "@/reducers/EditScheduleReducer";
 import uuid from "react-uuid";
 
 export const EditScheduleContext = createContext();
 export const EditScheduleUpdateContext = createContext();
 
 export function EditScheduleContextProvider({ children }) {
-  const [rows, setRows] = useState([
+  const [rows, dispatch] = useReducer(scheduleReducer, [
     {
       firstName: "Miguel",
       lastName: "Moya",
@@ -122,14 +123,6 @@ export function EditScheduleContextProvider({ children }) {
 
   const [activeFilters, setActiveFilters] = useState([]);
 
-  function removeEmployee(id) {
-    // filter rows based on the id passed,
-    // if the passed id does not equal to the current row id being looped
-    // then keep the row, otherwise throw it away
-    const newRows = rows.filter((r) => r.id !== id);
-    setRows(newRows);
-  }
-
   function handleFilterChange(e, day) {
     // check if the passed filtered is alredy in the activeFilters array
     // if so then we want to remove it by filtering
@@ -165,7 +158,7 @@ export function EditScheduleContextProvider({ children }) {
   return (
     <EditScheduleContext.Provider value={{ rows: filterRows(), activeFilters }}>
       <EditScheduleUpdateContext.Provider
-        value={{ removeEmployee, handleFilterChange }}>
+        value={{ handleFilterChange, dispatch }}>
         {children}
       </EditScheduleUpdateContext.Provider>
     </EditScheduleContext.Provider>
