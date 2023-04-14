@@ -7,7 +7,6 @@ import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import uuid from "react-uuid";
-
 import {
   faChevronLeft,
   faChevronRight,
@@ -17,12 +16,16 @@ import {
   EditScheduleContext,
   EditScheduleUpdateContext,
 } from "@/contexts/EditScheduleContext";
+import { AddEmployeeContext } from "@/contexts/AddEmployeeContext";
+import AddUserDialog from "@/components/AddUserDialog";
 
 export default function Schedules() {
   const { rows, activeFilters, snackBarState } =
     useContext(EditScheduleContext);
   const { handleSnackBarClose, handleFilterChange, handleSnackBar, dispatch } =
     useContext(EditScheduleUpdateContext);
+
+  const { openAddUserModal } = useContext(AddEmployeeContext);
 
   const action = (
     <React.Fragment>
@@ -153,7 +156,9 @@ export default function Schedules() {
 
       {/* Pagination */}
       <div className="mt-6 mb-10 flex items-center justify-between text-base">
-        <button className="bg-sky-700 text-white px-5 py-2 rounded-[3px]">
+        <button
+          className="bg-sky-700 text-white px-5 py-2 rounded-[3px]"
+          onClick={() => openAddUserModal()}>
           <FontAwesomeIcon
             icon={faPlus}
             className="text-white text-base mr-3"
@@ -180,6 +185,8 @@ export default function Schedules() {
           </div>
         </div>
       </div>
+
+      <AddUserDialog />
     </div>
   );
 }
