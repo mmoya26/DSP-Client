@@ -9,10 +9,8 @@ import { AddEmployeeContext } from "@/contexts/AddEmployeeContext";
 import { EditScheduleUpdateContext } from "@/contexts/EditScheduleContext";
 
 export default function AddUserDialog() {
-  const { closeUserModal, addUserModalOpen } = useContext(AddEmployeeContext);
-
-  const { handleSnackBarClose, handleSnackBar, handleFilterChange, dispatch } =
-    useContext(EditScheduleUpdateContext);
+  const { addUserModalOpen, closeUserModal } = useContext(AddEmployeeContext);
+  const { handleSnackBar, dispatch } = useContext(EditScheduleUpdateContext);
 
   return (
     <Dialog
