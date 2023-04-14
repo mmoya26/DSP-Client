@@ -6,14 +6,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { AddEmployeeContext } from "@/contexts/AddEmployeeContext";
+import { EditScheduleUpdateContext } from "@/contexts/EditScheduleContext";
 
 export default function AddUserDialog() {
-  const {
-    openAddUserModal,
-    closeUserModal,
-    addUserModalOpen,
-    setAddUserModalOpen,
-  } = useContext(AddEmployeeContext);
+  const { closeUserModal, addUserModalOpen } = useContext(AddEmployeeContext);
+
+  const { handleSnackBarClose, handleSnackBar, handleFilterChange, dispatch } =
+    useContext(EditScheduleUpdateContext);
 
   return (
     <Dialog
@@ -32,7 +31,13 @@ export default function AddUserDialog() {
       </DialogContent>
       <DialogActions>
         <Button onClick={closeUserModal}>Disagree</Button>
-        <Button onClick={closeUserModal} autoFocus>
+        <Button
+          onClick={() => {
+            dispatch({ type: "ADD" });
+            handleSnackBar("Employee successfully added");
+            closeUserModal();
+          }}
+          autoFocus>
           Agree
         </Button>
       </DialogActions>

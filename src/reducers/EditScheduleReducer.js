@@ -1,5 +1,9 @@
 const reducer = (state, action) => {
   switch (action.type) {
+    case "ADD":
+      // TODO: add new user logic
+      return state;
+
     case "REMOVE":
       // filter rows based on the id passed from action.id,
       // if the passed id does not equal to the current row id being looped

@@ -8,3 +8,7 @@
 - Being able to search a single employee from the list
 - Being able to filter the list based on the days of the week and only show the people that are working on the days selected
 - Being able to add an employee to the list
+
+# Refactoring ideas
+
+- Create custom hook for EditScheduleReducer (to remove function handlers)

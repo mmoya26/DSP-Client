@@ -12,13 +12,13 @@ export function AddEmployeeContextProvider({ children }) {
   const closeUserModal = () => {
     setAddUserModalOpen(false);
   };
+
   return (
     <AddEmployeeContext.Provider
       value={{
         openAddUserModal,
         closeUserModal,
         addUserModalOpen,
-        setAddUserModalOpen,
       }}>
       {children}
     </AddEmployeeContext.Provider>
