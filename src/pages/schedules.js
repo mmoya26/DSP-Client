@@ -60,6 +60,9 @@ export default function Schedules() {
         onClose={handleSnackBarClose}
         message={snackBarState.message}
         action={action}
+        ContentProps={{
+          className: "bg-sky-700",
+        }}
       />
       <h1 className="text-slate-600 font-bold text-2xl mb-12">
         <p className="text-slate-500 font-normal text-base">
