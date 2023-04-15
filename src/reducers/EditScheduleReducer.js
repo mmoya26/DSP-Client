@@ -1,8 +1,26 @@
+import uuid from "react-uuid";
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD":
       // TODO: add new user logic
-      return state;
+      return [
+        ...state,
+        {
+          firstName: "Jose",
+          lastName: "Alvarez",
+          daysWorking: {
+            sunday: false,
+            monday: false,
+            tuesday: true,
+            wednesday: true,
+            thursday: true,
+            friday: true,
+            saturday: true,
+          },
+          id: uuid(),
+        },
+      ];
 
     case "REMOVE":
       // filter rows based on the id passed from action.id,
