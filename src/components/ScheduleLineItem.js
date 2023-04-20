@@ -4,7 +4,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function ScheduleLineItem(props) {
   const { n, removeEmployee } = props;
-  const { id, firstName, lastName, daysWorking } = props.row;
+  const { id, name, daysWorking } = props.row;
 
   return (
     <div
@@ -12,9 +12,7 @@ export default function ScheduleLineItem(props) {
       style={{
         backgroundColor: `${n % 2 === 0 ? "#f8fafc" : "#f1f5f9"}`,
       }}>
-      <div className="text-slate-600 basis-1/4 p-4 text-center">
-        {`${firstName} ${lastName}`}
-      </div>
+      <div className="text-slate-600 basis-1/4 p-4 text-center">{name}</div>
       <div className="flex gap-[60px] text-center">
         {Object.keys(daysWorking).map((day, i) => {
           return daysWorking[day] ? (

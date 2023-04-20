@@ -39,3 +39,16 @@ body {
 .checkbox:checked:after {
   opacity: 1;
 }
+
+.dialog-advanced-options-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #94a3b8;
+}
+
+.dialog-advanced-options-checkbox::after {
+  left: 7px;
+  top: 3px;
+  width: 7px;
+  height: 11px;
+}

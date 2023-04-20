@@ -8,8 +8,7 @@ export const EditScheduleUpdateContext = createContext();
 export function EditScheduleContextProvider({ children }) {
   const [rows, dispatch] = useReducer(scheduleReducer, [
     {
-      firstName: "Miguel",
-      lastName: "Moya",
+      name: "Miguel Moya",
       daysWorking: {
         sunday: false,
         monday: false,
@@ -22,8 +21,7 @@ export function EditScheduleContextProvider({ children }) {
       id: uuid(),
     },
     {
-      firstName: "Lorinda",
-      lastName: "Hahn",
+      name: "Lorinda Hahn",
       daysWorking: {
         sunday: false,
         monday: true,
@@ -36,8 +34,7 @@ export function EditScheduleContextProvider({ children }) {
       id: uuid(),
     },
     {
-      firstName: "Tanner",
-      lastName: "Jepsen",
+      name: "Tanner Jepsen",
       daysWorking: {
         sunday: false,
         monday: false,
@@ -50,8 +47,7 @@ export function EditScheduleContextProvider({ children }) {
       id: uuid(),
     },
     {
-      firstName: "Eric",
-      lastName: "Winkler",
+      name: "Eric Winkler",
       daysWorking: {
         sunday: true,
         monday: true,
@@ -64,8 +60,7 @@ export function EditScheduleContextProvider({ children }) {
       id: uuid(),
     },
     {
-      firstName: "Mike Salazar",
-      lastName: "Hahn",
+      name: "Mike Salazar",
       daysWorking: {
         sunday: true,
         monday: false,
@@ -78,8 +73,7 @@ export function EditScheduleContextProvider({ children }) {
       id: uuid(),
     },
     {
-      firstName: "Carly",
-      lastName: "Jossart",
+      name: "Carl Jossart",
       daysWorking: {
         sunday: true,
         monday: false,
@@ -92,8 +86,7 @@ export function EditScheduleContextProvider({ children }) {
       id: uuid(),
     },
     {
-      firstName: "Loren",
-      lastName: "Schuhart",
+      name: "Loren Schuhart",
       daysWorking: {
         sunday: false,
         monday: false,
@@ -106,8 +99,7 @@ export function EditScheduleContextProvider({ children }) {
       id: uuid(),
     },
     {
-      firstName: "Ethan",
-      lastName: "Hayes",
+      name: "Ethan Hayes",
       daysWorking: {
         sunday: false,
         monday: true,

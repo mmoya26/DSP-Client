@@ -9,6 +9,7 @@
 - Being able to filter the list based on the days of the week and only show the people that are working on the days selected
 - Being able to add an employee to the list
 
-# Refactoring ideas
+# TODO in Schedule Edit Page
 
-- Create custom hook for EditScheduleReducer (to remove function handlers)
+- useMemo() for most of the components that do not need to re-render every time
+- Data validation for Add Employee dialog

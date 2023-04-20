@@ -4,20 +4,26 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "ADD":
       // TODO: add new user logic
+      let generatedDays = {};
+
+      [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ].forEach((d) => {
+        generatedDays[d.toLowerCase()] =
+          action.employee.daysWorking.includes(d);
+      });
+
       return [
         ...state,
         {
-          firstName: "Jose",
-          lastName: "Alvarez",
-          daysWorking: {
-            sunday: false,
-            monday: false,
-            tuesday: true,
-            wednesday: true,
-            thursday: true,
-            friday: true,
-            saturday: true,
-          },
+          name: `${action.employee.name}`,
+          daysWorking: generatedDays,
           id: uuid(),
         },
       ];
