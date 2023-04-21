@@ -20,6 +20,8 @@ const daysOfTheWeek = [
   "Saturday",
 ];
 
+const tags = ["D", "OC", "OPS"];
+
 export default function AddUserDialog() {
   const {
     addUserModalOpen,
@@ -28,6 +30,8 @@ export default function AddUserDialog() {
     handleDaysSelected,
     employeeName,
     handleEmployeeName,
+    showAdvancedOptions,
+    setShowAdvancedOptions,
   } = useContext(AddEmployeeContext);
   const { handleSnackBar, dispatch } = useContext(EditScheduleUpdateContext);
 
@@ -42,6 +46,7 @@ export default function AddUserDialog() {
       PaperProps={{
         style: {
           backgroundColor: "#f9fafb",
+          height: "472px",
         },
       }}>
       <DialogTitle
@@ -78,6 +83,7 @@ export default function AddUserDialog() {
               <input
                 type="checkbox"
                 className="checkbox dialog-advanced-options-checkbox"
+                onChange={() => setShowAdvancedOptions(!showAdvancedOptions)}
               />
               <label
                 className={`text-slate-600 text-base mb-2 block ${inter.className}`}
@@ -90,18 +96,33 @@ export default function AddUserDialog() {
           <div className="flex flex-wrap gap-4 text-center">
             {daysOfTheWeek.map((d) => {
               const selected = daysSelected.includes(d);
-              console.log(selected);
               return (
-                <button
-                  key={uuid()}
-                  className={`border rounded-[3px] w-[170px] h-[48px] border-gray-200 ${
-                    selected
-                      ? "bg-slate-600 text-gray-50 font-semibold"
-                      : "bg-white text-slate-600 font-normal"
-                  }`}
-                  onClick={() => handleDaysSelected(d)}>
-                  {d}
-                </button>
+                <div
+                  className="flex flex-col justify-start items-start"
+                  key={uuid()}>
+                  <button
+                    key={uuid()}
+                    className={`border rounded-[3px] w-[170px] h-[48px] border-gray-200 ${
+                      selected
+                        ? "bg-slate-600 text-gray-50 font-semibold"
+                        : "bg-white text-slate-600 font-normal"
+                    }`}
+                    onClick={() => handleDaysSelected(d)}>
+                    {d}
+                  </button>
+
+                  {showAdvancedOptions && (
+                    <div className="flex gap-2 justify-center w-full">
+                      {tags.map((t) => (
+                        <button
+                          key={uuid()}
+                          className={`mt-1 border rounded-[3px] flex-grow border-gray-200 bg-white`}>
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>

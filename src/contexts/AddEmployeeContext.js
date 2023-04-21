@@ -6,6 +6,7 @@ export function AddEmployeeContextProvider({ children }) {
   const [addUserModalOpen, setAddUserModalOpen] = useState(false);
   const [daysSelected, setDaysSelected] = useState([]);
   const [employeeName, setEmployeeName] = useState("");
+  const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
 
   const handleDaysSelected = (day) => {
     if (daysSelected.includes(day)) {
@@ -40,6 +41,8 @@ export function AddEmployeeContextProvider({ children }) {
         daysSelected,
         employeeName,
         handleEmployeeName,
+        showAdvancedOptions,
+        setShowAdvancedOptions,
       }}>
       {children}
     </AddEmployeeContext.Provider>
