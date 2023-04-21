@@ -21,7 +21,10 @@ export function AddEmployeeContextProvider({ children }) {
     let newObj = { ...daysWorkingSelected };
 
     if (tag) {
-      newVal = newObj[day.toLowerCase()] === tag ? "off" : tag.toLowerCase();
+      newVal =
+        newObj[day.toLowerCase()] === tag.toLowerCase()
+          ? "off"
+          : tag.toLowerCase();
     } else {
       if (newObj[day.toLowerCase()] === "off") {
         newVal = "on";
