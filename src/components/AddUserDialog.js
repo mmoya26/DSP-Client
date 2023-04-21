@@ -32,6 +32,7 @@ export default function AddUserDialog() {
     handleEmployeeName,
     showAdvancedOptions,
     setShowAdvancedOptions,
+    daysWorkingSelected,
   } = useContext(AddEmployeeContext);
   const { handleSnackBar, dispatch } = useContext(EditScheduleUpdateContext);
 
@@ -83,11 +84,12 @@ export default function AddUserDialog() {
               <input
                 type="checkbox"
                 className="checkbox dialog-advanced-options-checkbox"
+                id="dialog-advanced-options-checkbox"
                 onChange={() => setShowAdvancedOptions(!showAdvancedOptions)}
               />
               <label
                 className={`text-slate-600 text-base mb-2 block ${inter.className}`}
-                htmlFor="dialog-employe-name">
+                htmlFor="dialog-advanced-options-checkbox">
                 Show advanced options
               </label>
             </div>
@@ -95,7 +97,9 @@ export default function AddUserDialog() {
 
           <div className="flex flex-wrap gap-4 text-center">
             {daysOfTheWeek.map((d) => {
-              const selected = daysSelected.includes(d);
+              const daySelected =
+                daysWorkingSelected[d.toLowerCase()] !== "off" ? true : false;
+
               return (
                 <div
                   className="flex flex-col justify-start items-start"
@@ -103,7 +107,7 @@ export default function AddUserDialog() {
                   <button
                     key={uuid()}
                     className={`border rounded-[3px] w-[170px] h-[48px] border-gray-200 ${
-                      selected
+                      daySelected
                         ? "bg-slate-600 text-gray-50 font-semibold"
                         : "bg-white text-slate-600 font-normal"
                     }`}
@@ -113,13 +117,27 @@ export default function AddUserDialog() {
 
                   {showAdvancedOptions && (
                     <div className="flex gap-2 justify-center w-full">
-                      {tags.map((t) => (
-                        <button
-                          key={uuid()}
-                          className={`mt-1 border rounded-[3px] flex-grow border-gray-200 bg-white`}>
-                          {t}
-                        </button>
-                      ))}
+                      {tags.map((t) => {
+                        const tagSelected =
+                          t.toLowerCase() ===
+                          daysWorkingSelected[d.toLowerCase()].toLowerCase()
+                            ? true
+                            : false;
+
+                        console.log(tagSelected);
+                        return (
+                          <button
+                            key={uuid()}
+                            className={`mt-1 border rounded-[3px] flex-grow border-gray-200 ${
+                              tagSelected
+                                ? "bg-slate-600 text-gray-50 font-semibold"
+                                : "bg-white text-slate-600 font-normal"
+                            }`}
+                            onClick={() => handleDaysSelected(d, t)}>
+                            {t}
+                          </button>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
