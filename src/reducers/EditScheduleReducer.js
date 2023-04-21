@@ -3,27 +3,12 @@ import uuid from "react-uuid";
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD":
-      // TODO: add new user logic
-      let generatedDays = {};
-
-      [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ].forEach((d) => {
-        generatedDays[d.toLowerCase()] =
-          action.employee.daysWorking.includes(d);
-      });
-
+      console.log(action.employee);
       return [
         ...state,
         {
           name: `${action.employee.name}`,
-          daysWorking: generatedDays,
+          daysWorking: { ...action.employee.daysWorkingSelected },
           id: uuid(),
         },
       ];

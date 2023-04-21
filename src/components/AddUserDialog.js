@@ -152,7 +152,7 @@ export default function AddUserDialog() {
           onClick={() => {
             dispatch({
               type: "ADD",
-              employee: { name: employeeName, daysWorking: [...daysSelected] },
+              employee: { name: employeeName, daysWorkingSelected },
             });
             handleSnackBar("Employee successfully added");
             closeUserModal();

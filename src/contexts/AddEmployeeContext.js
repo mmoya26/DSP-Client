@@ -4,11 +4,8 @@ export const AddEmployeeContext = createContext();
 
 export function AddEmployeeContextProvider({ children }) {
   const [addUserModalOpen, setAddUserModalOpen] = useState(false);
-  const [daysSelected, setDaysSelected] = useState([]);
-  const [tagsSelected, setTagsSelected] = useState([]);
   const [employeeName, setEmployeeName] = useState("");
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
-
   const [daysWorkingSelected, setDaysWorkingSelected] = useState({
     sunday: "off",
     monday: "off",
@@ -24,7 +21,7 @@ export function AddEmployeeContextProvider({ children }) {
     let newObj = { ...daysWorkingSelected };
 
     if (tag) {
-      newVal = newObj[day.toLowerCase()] === tag ? "off" : tag;
+      newVal = newObj[day.toLowerCase()] === tag ? "off" : tag.toLowerCase();
     } else {
       if (newObj[day.toLowerCase()] === "off") {
         newVal = "on";
@@ -44,7 +41,15 @@ export function AddEmployeeContextProvider({ children }) {
 
   const closeUserModal = () => {
     setAddUserModalOpen(false);
-    setDaysSelected([]);
+    setDaysWorkingSelected({
+      sunday: "off",
+      monday: "off",
+      tuesday: "off",
+      wednesday: "off",
+      thursday: "off",
+      friday: "off",
+      saturday: "off",
+    });
     setEmployeeName("");
   };
 
@@ -59,7 +64,6 @@ export function AddEmployeeContextProvider({ children }) {
         closeUserModal,
         addUserModalOpen,
         handleDaysSelected,
-        daysSelected,
         employeeName,
         handleEmployeeName,
         showAdvancedOptions,

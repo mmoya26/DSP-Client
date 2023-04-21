@@ -155,7 +155,9 @@ export function EditScheduleContextProvider({ children }) {
       const newRows = rows.filter((r) => {
         // test every active filter and if the return of the fuction is true then we want to keep
         // that row, which will be returned by the row.filter()
-        return activeFilters.every((filter) => r.daysWorking[filter]);
+        return activeFilters.every((filter) => {
+          return r.daysWorking[filter] !== "off";
+        });
       });
 
       return newRows;
