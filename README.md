@@ -13,3 +13,4 @@
 
 - useMemo() for most of the components that do not need to re-render every time
 - Data validation for Add Employee dialog
+- clear all button to clear all filters
