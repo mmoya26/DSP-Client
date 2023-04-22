@@ -43,6 +43,7 @@ export function AddEmployeeContextProvider({ children }) {
 	};
 
 	const closeUserModal = () => {
+		// Reset all of the state of dialog when closing it
 		setAddUserModalOpen(false);
 		setDaysWorkingSelected({
 			sunday: "off",

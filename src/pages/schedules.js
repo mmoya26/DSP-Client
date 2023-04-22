@@ -15,10 +15,10 @@ import {
 	EditScheduleContext,
 	EditScheduleUpdateContext,
 } from "@/contexts/EditScheduleContext";
-import { AddEmployeeContext } from "@/contexts/AddEmployeeContext";
 import AddUserDialog from "@/components/AddUserDialog";
 import ScheduleSearchBar from "@/components/ScheduleSearchBar";
 import ScheduleFilterContainer from "@/components/ScheduleFilterContainer";
+import ScheduleAddEmployeeButton from "@/components/ScheduleAddEmployeeButton";
 
 const daysOfTheWeek = [
 	"Sunday",
@@ -36,8 +36,6 @@ export default function Schedules() {
 	const { handleSnackBarClose, handleSnackBar, dispatch } = useContext(
 		EditScheduleUpdateContext
 	);
-
-	const { openAddUserModal } = useContext(AddEmployeeContext);
 
 	const action = (
 		<React.Fragment>
@@ -115,16 +113,7 @@ export default function Schedules() {
 
 			{/* Pagination */}
 			<div className="mt-6 mb-10 flex items-center justify-between text-base">
-				<button
-					className="bg-lowblue text-white px-5 py-2 rounded-[3px]"
-					onClick={() => openAddUserModal()}
-				>
-					<FontAwesomeIcon
-						icon={faPlus}
-						className="text-white text-base mr-3"
-					/>
-					Add Employee
-				</button>
+				<ScheduleAddEmployeeButton />
 				<div className="flex items-center gap-5">
 					<span className="text-slate-500 text-base">Page 1 of 10</span>
 					<div className="flex gap-3">
