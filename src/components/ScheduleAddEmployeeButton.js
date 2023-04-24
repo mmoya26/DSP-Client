@@ -6,8 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function ScheduleAddEmployeeButton() {
 	const { openAddUserModal } = useContext(AddEmployeeContext);
 
-	console.log("Hellow world from button");
-
 	return (
 		<button
 			className="bg-lowblue text-white px-5 py-2 rounded-[3px]"

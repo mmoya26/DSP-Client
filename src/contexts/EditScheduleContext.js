@@ -133,17 +133,22 @@ export function EditScheduleContextProvider({ children }) {
 	};
 
 	function handleFilterChange(day) {
-		// check if the passed filtered is alredy in the activeFilters array
-		// if so then we want to remove it by filtering
-		if (activeFilters.includes(day.toLowerCase())) {
-			let filteredFilters = activeFilters.filter(
-				(f) => f !== day.toLowerCase()
-			);
-
-			setActiveFilters(filteredFilters);
+		// If day === reset then set activeFilters to an empty array
+		if (day === "reset") {
+			setActiveFilters([]);
 		} else {
-			// Otherwise add the passed day to the activeFilters array
-			setActiveFilters((oldFilters) => [...oldFilters, day.toLowerCase()]);
+			// check if the passed filtered is alredy in the activeFilters array
+			// if so then we want to remove it by filtering
+			if (activeFilters.includes(day.toLowerCase())) {
+				let filteredFilters = activeFilters.filter(
+					(f) => f !== day.toLowerCase()
+				);
+
+				setActiveFilters(filteredFilters);
+			} else {
+				// Otherwise add the passed day to the activeFilters array
+				setActiveFilters((oldFilters) => [...oldFilters, day.toLowerCase()]);
+			}
 		}
 	}
 
