@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useState } from "react";
 import scheduleReducer from "@/reducers/EditScheduleReducer";
 import uuid from "react-uuid";
+import { sortScheduleRows } from "@/helpers/sortScheduleRows";
 
 export const EditScheduleContext = createContext();
 export const EditScheduleUpdateContext = createContext();
@@ -165,8 +166,10 @@ export function EditScheduleContextProvider({ children }) {
 				});
 			});
 
+			sortScheduleRows(newRows);
 			return newRows;
 		} else {
+			sortScheduleRows(rows);
 			return rows;
 		}
 	}

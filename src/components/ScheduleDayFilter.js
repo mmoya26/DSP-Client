@@ -6,7 +6,6 @@ export default function ScheduleDayFilter({
 	id,
 	isChecked,
 }) {
-	console.log(isChecked);
 	return (
 		<div className="flex gap-2 cursor-pointer">
 			<input

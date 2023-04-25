@@ -128,8 +128,6 @@ export default function AddUserDialog() {
 													daysWorkingSelected[d.toLowerCase()].toLowerCase()
 														? true
 														: false;
-
-												console.log(tagSelected);
 												return (
 													<button
 														key={uuid()}

@@ -19,8 +19,6 @@ export default function ScheduleFilterContainer() {
 	const { handleFilterChange } = useContext(EditScheduleUpdateContext);
 	const { activeFilters } = useContext(EditScheduleContext);
 
-	console.log("RE_RENDERED_CONTAINER");
-
 	return (
 		<div className="flex items-center gap-6 mb-5">
 			{daysOfTheWeek.map((d) => {
