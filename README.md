@@ -12,3 +12,4 @@
 # TODO in Schedule Edit Page
 
 - Data validation for Add Employee dialog
+- Change state data in AddEmployee dialog to match how data is being rendered and sent
