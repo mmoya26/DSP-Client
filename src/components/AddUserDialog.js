@@ -33,7 +33,7 @@ export default function AddUserDialog() {
     handleEmployeeName,
     showAdvancedOptions,
     setShowAdvancedOptions,
-    daysWorkingSelected,
+    daysWorking,
   } = useContext(AddEmployeeContext);
   const { handleSnackBar, dispatch } = useContext(EditScheduleUpdateContext);
 
@@ -99,7 +99,7 @@ export default function AddUserDialog() {
           <div className="flex flex-wrap gap-4 text-center">
             {daysOfTheWeek.map((d) => {
               const daySelected =
-                daysWorkingSelected[d.toLowerCase()] !== "off" ? true : false;
+                daysWorking[d.toLowerCase()] !== "off" ? true : false;
 
               return (
                 <div
@@ -121,7 +121,7 @@ export default function AddUserDialog() {
                       {tags.map((t) => {
                         const tagSelected =
                           t.toLowerCase() ===
-                          daysWorkingSelected[d.toLowerCase()].toLowerCase()
+                          daysWorking[d.toLowerCase()].toLowerCase()
                             ? true
                             : false;
                         return (
@@ -151,7 +151,7 @@ export default function AddUserDialog() {
           onClick={() => {
             dispatch({
               type: editingSchedule ? "EDIT" : "ADD",
-              employee: { name: employeeName, daysWorkingSelected, employeeId },
+              employee: { name: employeeName, daysWorking, employeeId },
             });
             handleSnackBar(
               editingSchedule

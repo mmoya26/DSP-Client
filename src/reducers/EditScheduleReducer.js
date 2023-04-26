@@ -7,7 +7,7 @@ const reducer = (state, action) => {
         ...state,
         {
           name: `${action.employee.name}`,
-          daysWorking: { ...action.employee.daysWorkingSelected },
+          daysWorking: { ...action.employee.daysWorking },
           id: uuid(),
         },
       ];
@@ -19,12 +19,12 @@ const reducer = (state, action) => {
       return state.filter((r) => r.id !== action.id);
 
     case "EDIT":
-      const { name, employeeId, daysWorkingSelected } = action.employee;
+      const { name, employeeId, daysWorking } = action.employee;
       const editedArray = state.filter((r) => r.id !== employeeId);
       const editedEmployee = {
         name,
         id: employeeId,
-        daysWorking: daysWorkingSelected,
+        daysWorking,
       };
       editedArray.push(editedEmployee);
       return editedArray;

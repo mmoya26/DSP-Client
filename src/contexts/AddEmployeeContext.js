@@ -6,7 +6,7 @@ export function AddEmployeeContextProvider({ children }) {
   const [addUserModalOpen, setAddUserModalOpen] = useState(false);
   const [employeeName, setEmployeeName] = useState("");
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
-  const [daysWorkingSelected, setDaysWorkingSelected] = useState({
+  const [daysWorking, setDaysWorking] = useState({
     sunday: "off",
     monday: "off",
     tuesday: "off",
@@ -20,7 +20,7 @@ export function AddEmployeeContextProvider({ children }) {
 
   const handleDaysSelected = (day, tag) => {
     let newVal = "";
-    let newObj = { ...daysWorkingSelected };
+    let newObj = { ...daysWorking };
 
     if (tag) {
       newVal =
@@ -37,7 +37,7 @@ export function AddEmployeeContextProvider({ children }) {
 
     newObj[day.toLowerCase()] = newVal;
 
-    setDaysWorkingSelected(newObj);
+    setDaysWorking(newObj);
   };
 
   const openAddUserModal = () => {
@@ -47,7 +47,7 @@ export function AddEmployeeContextProvider({ children }) {
   const closeUserModal = () => {
     // Reset all of the state of dialog when closing it
     setAddUserModalOpen(false);
-    setDaysWorkingSelected({
+    setDaysWorking({
       sunday: "off",
       monday: "off",
       tuesday: "off",
@@ -69,7 +69,7 @@ export function AddEmployeeContextProvider({ children }) {
   const setEditingEmployeeShift = ({ name, id, daysWorking }) => {
     setAddUserModalOpen(true);
     setEmployeeName(name);
-    setDaysWorkingSelected(daysWorking);
+    setDaysWorking(daysWorking);
     setEditingSchedule(true);
     setEmployeeId(id);
   };
@@ -87,7 +87,7 @@ export function AddEmployeeContextProvider({ children }) {
         handleEmployeeName,
         showAdvancedOptions,
         setShowAdvancedOptions,
-        daysWorkingSelected,
+        daysWorking,
         setEditingEmployeeShift,
       }}>
       {children}
