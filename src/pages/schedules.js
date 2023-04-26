@@ -100,7 +100,7 @@ export default function Schedules() {
               row={r}
               removeEmployee={() => {
                 dispatch({ type: "REMOVE", id: r.id });
-                handleSnackBar("Employee sucessfuly removed");
+                handleSnackBar("Employee sucessfully removed");
               }}
               key={r.id}
             />

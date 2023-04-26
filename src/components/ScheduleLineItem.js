@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { generateScheduleBadge } from "@/helpers/generateScheduleBadge";
+import { AddEmployeeContext } from "@/contexts/AddEmployeeContext";
 
 export default function ScheduleLineItem(props) {
-  const { n, removeEmployee } = props;
+  const { n, removeEmployee, editEmployeeShift } = props;
   const { id, name, daysWorking } = props.row;
+  const { setEditingEmployeeShift } = useContext(AddEmployeeContext);
   // text-emerald-500
   // red-500
   return (
@@ -18,7 +20,7 @@ export default function ScheduleLineItem(props) {
         <FontAwesomeIcon
           icon={faPenToSquare}
           className="text-slate-500 cursor-pointer"
-          onClick={() => removeEmployee(id)}
+          onClick={() => setEditingEmployeeShift({ id, name, daysWorking })}
         />
         <span className="block mx-auto">{name}</span>
       </div>
@@ -26,10 +28,6 @@ export default function ScheduleLineItem(props) {
         {Object.keys(daysWorking).map((day, i) => {
           return (
             <div className="py-4 w-[93px]" key={i}>
-              {/* {daysWorking[day].toUpperCase()} */}
-              {/* <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-								OFF
-							</span> */}
               {generateScheduleBadge(daysWorking[day].toUpperCase())}
             </div>
           );
