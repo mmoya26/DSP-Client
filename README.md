@@ -12,7 +12,6 @@
 # TODO in Schedule Edit Page
 
 - Data validation for Add Employee dialog
-- No results found when the name typed or filters appleid don't return any rows
 
 # Additional Future Features
 
