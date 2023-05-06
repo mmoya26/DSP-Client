@@ -52,3 +52,18 @@ body {
   width: 7px;
   height: 11px;
 }
+
+/* Add User Dialog */
+.employee-name-input-add-user-dialog {
+  width: 100%;
+  border: none;
+}
+.employee-name-input-add-user-dialog input {
+  all: unset;
+  height: 40px;
+  display: block;
+  border-radius: 3px;
+  padding-left: 12px;
+  background-color: white;
+  width: 100%;
+}

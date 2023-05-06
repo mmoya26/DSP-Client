@@ -7,6 +7,7 @@ import { AddEmployeeContext } from "@/contexts/AddEmployeeContext";
 import { EditScheduleUpdateContext } from "@/contexts/EditScheduleContext";
 import { Inter } from "next/font/google";
 import uuid from "react-uuid";
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -64,15 +65,21 @@ export default function AddUserDialog() {
             Employee Name
           </label>
           <div className="rounded-md shadow-sm">
-            <input
+            {/* <input
               type="text"
               name="search"
               id="dialog-employe-name"
               className="h-10 block w-full rounded-md border border-gray-200 pl-3 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
               spellCheck="false"
-              value={employeeName}
-              onChange={handleEmployeeName}
-            />
+            /> */}
+
+            <ValidatorForm>
+              <TextValidator
+                value={employeeName}
+                onChange={handleEmployeeName}
+                className="employee-name-input-add-user-dialog"
+              />
+            </ValidatorForm>
           </div>
         </div>
 
