@@ -12,6 +12,7 @@
 # TODO in Schedule Edit Page
 
 - Data validation for Add Employee dialog
+- Disable employee name text field is row is being edited otherwise enable it
 
 # Additional Future Features
 
