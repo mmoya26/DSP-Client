@@ -11,6 +11,8 @@
 
 # TODO in Schedule Edit Page
 
+- Pop-up warning before deleting an employee from the schedule
+
 # Additional Future Features
 
 - Send all employees scheduke with google's api?
