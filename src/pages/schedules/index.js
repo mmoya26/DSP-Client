@@ -7,15 +7,15 @@ import {
 import Link from "next/link";
 
 export default function index() {
-	const [data, setData] = useState(null);
+	const [rows, setRows] = useState(null);
 	const [isLoading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setLoading(true);
-		fetch("/api/")
+		fetch("/api/users")
 			.then((res) => res.json())
 			.then((data) => {
-				setData(data);
+				setRows(data.rows);
 				setLoading(false);
 			});
 	}, []);
@@ -41,16 +41,23 @@ export default function index() {
 			<div>
 				<h3 className="text-slate-600 font-semibold text-2xl mb-5">Current</h3>
 
-				<Link
-					href="/schedules/1"
-					className="shadow-sm py-4 px-4 bg-white rounded-md border border-gray-200 flex gap-3 items-center justify-between"
-				>
-					<span>May 5/1 - 5/7</span>
-					<FontAwesomeIcon
-						icon={faChevronRight}
-						className="cursor-pointer text-base text-slate-500 "
-					/>
-				</Link>
+				{rows !== null ? (
+					rows.map((row) => (
+						<Link
+							href={`/schedules/${row.scheduleId}`}
+							className="shadow-sm py-4 px-4 bg-white rounded-md border border-gray-200 flex gap-3 items-center justify-between"
+							key={row.scheduleId}
+						>
+							<span>May 5/1 - 5/7</span>
+							<FontAwesomeIcon
+								icon={faChevronRight}
+								className="cursor-pointer text-base text-slate-500 "
+							/>
+						</Link>
+					))
+				) : (
+					<h2>Loading</h2>
+				)}
 			</div>
 		</div>
 	);

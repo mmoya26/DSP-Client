@@ -1,4 +1,4 @@
-import React, { useState, useContext, useId } from "react";
+import React, { useState, useContext, useId, useEffect } from "react";
 import ScheduleLineItem from "@/components/ScheduleLineItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@mui/material/Button";
@@ -18,7 +18,6 @@ import AddUserDialog from "@/components/AddUserDialog";
 import ScheduleSearchBar from "@/components/ScheduleSearchBar";
 import ScheduleFilterContainer from "@/components/ScheduleFilterContainer";
 import ScheduleAddEmployeeButton from "@/components/ScheduleAddEmployeeButton";
-import { useRouter } from "next/router";
 
 const daysOfTheWeek = [
 	"Sunday",
@@ -30,16 +29,12 @@ const daysOfTheWeek = [
 	"Saturday",
 ];
 
-export default function Schedules() {
+export default function Page() {
 	const { rows, activeFilters, snackBarState } =
 		useContext(EditScheduleContext);
 	const { handleSnackBarClose, handleSnackBar, dispatch } = useContext(
 		EditScheduleUpdateContext
 	);
-
-	const router = useRouter();
-
-	console.log(router);
 
 	const action = (
 		<React.Fragment>
