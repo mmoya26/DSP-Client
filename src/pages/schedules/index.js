@@ -38,15 +38,17 @@ export default function index() {
 				</button>
 			</div>
 
-			<div>
-				<h3 className="text-slate-600 font-semibold text-2xl mb-5">Current</h3>
-
-				{rows !== null ? (
-					rows.map((row) => (
+			{rows && (
+				// Current Section
+				<>
+					<div className="flex gap-3 flex-col mb-8">
+						<h3 className="text-slate-600 font-semibold text-2xl mb-3">
+							Current
+						</h3>
 						<Link
-							href={`/schedules/${row.scheduleId}`}
+							href={`/schedules/${rows[0].scheduleId}`}
 							className="shadow-sm py-4 px-4 bg-white rounded-md border border-gray-200 flex gap-3 items-center justify-between"
-							key={row.scheduleId}
+							key={rows[0].scheduleId}
 						>
 							<span>May 5/1 - 5/7</span>
 							<FontAwesomeIcon
@@ -54,11 +56,33 @@ export default function index() {
 								className="cursor-pointer text-base text-slate-500 "
 							/>
 						</Link>
-					))
-				) : (
-					<h2>Loading</h2>
-				)}
-			</div>
+					</div>
+
+					<div className="flex gap-3 flex-col">
+						<h3 className="text-slate-600 font-semibold text-2xl mb-3">
+							Previous
+						</h3>
+						{rows.map((r, i) => {
+							console.log(i);
+							if (i !== 0) {
+								return (
+									<Link
+										href={`/schedules/${r.scheduleId}`}
+										className="shadow-sm py-4 px-4 bg-white rounded-md border border-gray-200 flex gap-3 items-center justify-between"
+										key={r.scheduleId}
+									>
+										<span>May 5/1 - 5/7</span>
+										<FontAwesomeIcon
+											icon={faChevronRight}
+											className="cursor-pointer text-base text-slate-500 "
+										/>
+									</Link>
+								);
+							}
+						})}
+					</div>
+				</>
+			)}
 		</div>
 	);
 }

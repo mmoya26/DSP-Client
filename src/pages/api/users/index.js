@@ -221,7 +221,7 @@ export default function handler(req, res) {
 				},
 			],
 		},
-	];
+	].reverse();
 
 	return res.status(200).json({ rows });
 }

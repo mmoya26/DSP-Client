@@ -13,6 +13,8 @@ export function EditScheduleContextProvider({ children }) {
 	const { id } = router.query;
 
 	useEffect(() => {
+		// If {id} equals undefined there is no need for us to fetch data since we won't be using
+		// the only time {id} won't be undefined is when an user clicks on a schedule from the schedules list at /schedules
 		if (id) {
 			console.log("Fetching...");
 			fetch("/api/users/2")

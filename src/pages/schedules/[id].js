@@ -1,11 +1,10 @@
-import React, { useState, useContext, useId, useEffect } from "react";
+import React, { useContext } from "react";
 import ScheduleLineItem from "@/components/ScheduleLineItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import uuid from "react-uuid";
 import {
 	faChevronLeft,
 	faChevronRight,
@@ -18,20 +17,10 @@ import AddUserDialog from "@/components/AddUserDialog";
 import ScheduleSearchBar from "@/components/ScheduleSearchBar";
 import ScheduleFilterContainer from "@/components/ScheduleFilterContainer";
 import ScheduleAddEmployeeButton from "@/components/ScheduleAddEmployeeButton";
-
-const daysOfTheWeek = [
-	"Sunday",
-	"Monday",
-	"Tuesday",
-	"Wednesday",
-	"Thursday",
-	"Friday",
-	"Saturday",
-];
+import ScheduleDaysOfTheWeek from "@/components/ScheduleDaysOfTheWeek";
 
 export default function Page() {
-	const { rows, activeFilters, snackBarState } =
-		useContext(EditScheduleContext);
+	const { rows, snackBarState } = useContext(EditScheduleContext);
 	const { handleSnackBarClose, handleSnackBar, dispatch } = useContext(
 		EditScheduleUpdateContext
 	);
@@ -68,29 +57,7 @@ export default function Page() {
 			<ScheduleSearchBar />
 
 			{/* Days of the week */}
-			<div className="flex mt-6 items-center">
-				<div className="text-slate-600 basis-1/4 px-4 text-center">
-					Employee Name
-				</div>
-				<div className="flex gap-[60px]">
-					{daysOfTheWeek.map((d, i) => {
-						const isActive = activeFilters.includes(d.toLowerCase());
-
-						return (
-							<div
-								className={`text-slate-600 text-center w-[93px] ${
-									isActive ? "font-bold" : ""
-								}`}
-								key={uuid()}
-							>
-								{d} <br />
-								(5/{i + 1})
-							</div>
-						);
-					})}
-				</div>
-				<div className="w-[46px]"></div>
-			</div>
+			<ScheduleDaysOfTheWeek />
 
 			{/* Table Structure */}
 			{rows.length > 0 ? (

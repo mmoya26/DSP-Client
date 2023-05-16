@@ -225,8 +225,5 @@ export default function handler(req, res) {
 	];
 
 	const schedule = rows.find((r) => r.scheduleId === id);
-
-	console.log(schedule);
-
 	return res.status(200).json({ schedule });
 }

@@ -68,12 +68,6 @@ export default function AddUserDialog() {
 				}}
 				className="h-full flex flex-col"
 			>
-				{/* <DialogTitle
-					id="alert-dialog-title"
-					className={`${inter.className} text-slate-600 text-3xl font-bold`}
-				>
-					{"Add Employee"}
-				</DialogTitle> */}
 				<div>
 					<DialogTitle
 						id="alert-dialog-title"
