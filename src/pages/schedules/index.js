@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCalendarPlus,
@@ -7,6 +7,19 @@ import {
 import Link from "next/link";
 
 export default function index() {
+	const [data, setData] = useState(null);
+	const [isLoading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setLoading(true);
+		fetch("/api/")
+			.then((res) => res.json())
+			.then((data) => {
+				setData(data);
+				setLoading(false);
+			});
+	}, []);
+
 	return (
 		<div className="mx-auto mt-5 max-w-screen-2xl">
 			<div className="flex justify-between items-start">
@@ -30,7 +43,7 @@ export default function index() {
 
 				<Link
 					href="/schedules/1"
-					className="shadow-sm py-4 px-4 bg-white rounded-md border border-gray-200 flex gap-3 items-center"
+					className="shadow-sm py-4 px-4 bg-white rounded-md border border-gray-200 flex gap-3 items-center justify-between"
 				>
 					<span>May 5/1 - 5/7</span>
 					<FontAwesomeIcon
