@@ -18,6 +18,7 @@ import AddUserDialog from "@/components/AddUserDialog";
 import ScheduleSearchBar from "@/components/ScheduleSearchBar";
 import ScheduleFilterContainer from "@/components/ScheduleFilterContainer";
 import ScheduleAddEmployeeButton from "@/components/ScheduleAddEmployeeButton";
+import { useRouter } from "next/router";
 
 const daysOfTheWeek = [
 	"Sunday",
@@ -35,6 +36,10 @@ export default function Schedules() {
 	const { handleSnackBarClose, handleSnackBar, dispatch } = useContext(
 		EditScheduleUpdateContext
 	);
+
+	const router = useRouter();
+
+	console.log(router);
 
 	const action = (
 		<React.Fragment>

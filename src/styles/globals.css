@@ -3,67 +3,67 @@
 @tailwind utilities;
 
 body {
-  background-color: #f9fafb;
+	background-color: #f9fafb;
 }
 
 .checkbox {
-  all: unset;
-  position: relative;
-  width: 25px;
-  height: 25px;
-  /* background: #475569; */
-  border: 1px solid #94a3b8;
-  border-radius: 3px;
+	all: unset;
+	position: relative;
+	width: 25px;
+	height: 25px;
+	/* background: #475569; */
+	border: 1px solid #94a3b8;
+	border-radius: 3px;
 }
 
 .checkbox::after {
-  content: "";
-  opacity: 0;
-  display: block;
-  left: 9px;
-  top: 5px;
-  position: absolute;
-  width: 7px;
-  height: 13px;
-  border: 3px solid white;
-  border-top: 0;
-  border-left: 0;
-  transform: rotate(30deg);
+	content: "";
+	opacity: 0;
+	display: block;
+	left: 9px;
+	top: 5px;
+	position: absolute;
+	width: 7px;
+	height: 13px;
+	border: 3px solid white;
+	border-top: 0;
+	border-left: 0;
+	transform: rotate(30deg);
 }
 
 .checkbox:checked {
-  background-color: #475569;
-  border: 1px solid transparent;
+	background-color: #475569;
+	border: 1px solid transparent;
 }
 
 .checkbox:checked:after {
-  opacity: 1;
+	opacity: 1;
 }
 
 .dialog-advanced-options-checkbox {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #94a3b8;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #94a3b8;
 }
 
 .dialog-advanced-options-checkbox::after {
-  left: 7px;
-  top: 3px;
-  width: 7px;
-  height: 11px;
+	left: 7px;
+	top: 3px;
+	width: 7px;
+	height: 11px;
 }
 
 /* Add User Dialog */
 .employee-name-input-add-user-dialog {
-  width: 100%;
-  border: none;
+	width: 100%;
+	border: none;
 }
 .employee-name-input-add-user-dialog input {
-  all: unset;
-  height: 40px;
-  display: block;
-  border-radius: 3px;
-  padding-left: 12px;
-  background-color: white;
-  width: 100%;
+	all: unset;
+	height: 40px;
+	display: block;
+	border-radius: 3px;
+	padding-left: 12px;
+	background-color: white;
+	width: 100%;
 }
