@@ -8,6 +8,7 @@ import { EditScheduleUpdateContext } from "@/contexts/EditScheduleContext";
 import { Inter } from "next/font/google";
 import uuid from "react-uuid";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import { Diversity2TwoTone } from "@mui/icons-material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -168,7 +169,7 @@ export default function AddUserDialog() {
 						</div>
 					</div>
 				</div>
-				<DialogActions className="flex justify-start pl-6 py-4 mt-auto">
+				<div className="flex justify-start px-6 py-4 mt-auto">
 					<button
 						type="submit"
 						className="font-base bg-lowblue text-white px-7 py-2 rounded-[3px]"
@@ -181,7 +182,7 @@ export default function AddUserDialog() {
 					>
 						Cancel
 					</button>
-				</DialogActions>
+				</div>
 			</ValidatorForm>
 		</Dialog>
 	);

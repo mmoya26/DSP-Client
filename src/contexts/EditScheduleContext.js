@@ -33,6 +33,16 @@ export function EditScheduleContextProvider({ children }) {
 		open: false,
 	});
 
+	const [removeDialogState, setRemoveDialogState] = useState(false);
+
+	const handleRemoveDialogStateOpen = () => {
+		setRemoveDialogState(true);
+	};
+
+	const handleOpenRemoveDialogStateClose = () => {
+		setRemoveDialogState(false);
+	};
+
 	const [activeFilters, setActiveFilters] = useState([]);
 
 	const handleSnackBarClose = (event, reason) => {
@@ -90,12 +100,19 @@ export function EditScheduleContextProvider({ children }) {
 
 	return (
 		<EditScheduleContext.Provider
-			value={{ rows: filterRows(), activeFilters, snackBarState }}
+			value={{
+				rows: filterRows(),
+				activeFilters,
+				snackBarState,
+				removeDialogState,
+			}}
 		>
 			<EditScheduleUpdateContext.Provider
 				value={{
 					handleSnackBarClose,
 					handleSnackBar,
+					handleRemoveDialogStateOpen,
+					handleOpenRemoveDialogStateClose,
 					handleFilterChange,
 					dispatch,
 				}}

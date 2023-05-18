@@ -11,7 +11,8 @@
 
 # TODO in Schedule Edit Page
 
-- Pop-up warning before deleting an employee from the schedule
+- Create custom hook for handling useState on snackbar closing and dialogs closing
+- CSS Adjusments to people with long names for both table structure and remove dialog title
 
 # Additional Future Features
 

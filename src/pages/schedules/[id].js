@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import ScheduleLineItem from "@/components/ScheduleLineItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@mui/material/Button";
@@ -18,12 +18,19 @@ import ScheduleSearchBar from "@/components/ScheduleSearchBar";
 import ScheduleFilterContainer from "@/components/ScheduleFilterContainer";
 import ScheduleAddEmployeeButton from "@/components/ScheduleAddEmployeeButton";
 import ScheduleDaysOfTheWeek from "@/components/ScheduleDaysOfTheWeek";
+import RemoveDialog from "@/components/RemoveDialog";
 
 export default function Page() {
 	const { rows, snackBarState } = useContext(EditScheduleContext);
-	const { handleSnackBarClose, handleSnackBar, dispatch } = useContext(
-		EditScheduleUpdateContext
-	);
+	const {
+		handleRemoveDialogStateOpen,
+		handleSnackBarClose,
+		handleSnackBar,
+		dispatch,
+	} = useContext(EditScheduleUpdateContext);
+
+	const [isOpenRemoveDialog, setIsOpenRemoveDialog] = useState(false);
+	const [removingEmployee, setRemovingEmployee] = useState({});
 
 	const action = (
 		<React.Fragment>
@@ -69,8 +76,10 @@ export default function Page() {
 								n={n}
 								row={r}
 								removeEmployee={() => {
-									dispatch({ type: "REMOVE", id: r.id });
-									handleSnackBar("Employee sucessfully removed");
+									// dispatch({ type: "REMOVE", id: r.id });
+									// handleSnackBar("Employee sucessfully removed");
+									handleRemoveDialogStateOpen();
+									setRemovingEmployee(r);
 								}}
 								key={r.id}
 							/>
@@ -108,6 +117,12 @@ export default function Page() {
 			</div>
 
 			<AddUserDialog />
+			<RemoveDialog
+				text={
+					"Are you sure you want to remove this employee from the schedule?"
+				}
+				employee={removingEmployee}
+			/>
 			<Snackbar
 				open={snackBarState.open}
 				autoHideDuration={6000}
