@@ -9,7 +9,7 @@ import {
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RemoveDialog({ text, employee }) {
+export default function RemoveDialog({ title, text, employee }) {
 	const { removeDialogState } = useContext(EditScheduleContext);
 	const { handleOpenRemoveDialogStateClose, dispatch, handleSnackBar } =
 		useContext(EditScheduleUpdateContext);
@@ -33,7 +33,7 @@ export default function RemoveDialog({ text, employee }) {
 				id="alert-dialog-title"
 				className={`${inter.className} text-slate-600 text-3xl font-bold`}
 			>
-				Removing {name}
+				{title}
 			</DialogTitle>
 			<p className="px-7">{text}</p>
 			<div className="flex justify-start px-6 py-4 mt-auto">

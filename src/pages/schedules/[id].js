@@ -118,6 +118,7 @@ export default function Page() {
 
 			<AddUserDialog />
 			<RemoveDialog
+				title={`Removing ${removingEmployee.name}`}
 				text={
 					"Are you sure you want to remove this employee from the schedule?"
 				}
